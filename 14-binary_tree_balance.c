@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "binary_trees.h"
+
 /**
  * binary_tree_height - Measures the height of a binary tree
  *
@@ -10,19 +11,19 @@
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-    size_t leftHeight = 0;
-    size_t rightHeight = 0;
-    
-    if (tree == NULL)
-        return (0);
-    
-    if (tree->left)
-        leftHeight = 1 + binary_tree_height(tree->left);
-    
-    if (tree->right)
-        rightHeight = 1 + binary_tree_height(tree->right);
-    
-    return (leftHeight > rightHeight ? leftHeight : rightHeight);
+	size_t leftHeight = 0;
+	size_t rightHeight = 0;
+
+	if (tree == NULL)
+		return (0);
+
+	if (tree->left)
+		leftHeight = 1 + binary_tree_height(tree->left);
+
+	if (tree->right)
+		rightHeight = 1 + binary_tree_height(tree->right);
+
+	return (leftHeight > rightHeight ? leftHeight : rightHeight);
 }
 
 /**
@@ -34,19 +35,19 @@ size_t binary_tree_height(const binary_tree_t *tree)
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
-    size_t leftHeight = 0;
-    size_t rightHeight = 0;
-    
-    if (tree == NULL)
-        return (0);
-    
-    if (tree->left)
-        leftHeight = 1 + binary_tree_height(tree->left);
-    
-    if (tree->right)
-        rightHeight = 1 + binary_tree_height(tree->right);
-        
-    return (int)(leftHeight - rightHeight);
+	size_t leftHeight = 0;
+	size_t rightHeight = 0;
+
+	if (tree == NULL)
+		return (0);
+
+	if (tree->left)
+		leftHeight = 1 + binary_tree_height(tree->left);
+
+	if (tree->right)
+		rightHeight = 1 + binary_tree_height(tree->right);
+
+	return ((int)(leftHeight - rightHeight));
 }
 
 /**
@@ -59,16 +60,17 @@ int binary_tree_balance(const binary_tree_t *tree)
  */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-    binary_tree_t *newNode = malloc(sizeof(binary_tree_t));
-    if (newNode == NULL)
-        return (NULL);
-        
-    newNode->n = value;
-    newNode->parent = parent;
-    newNode->left = NULL;
-    newNode->right = NULL;
-        
-    return (newNode);
+	binary_tree_t *newNode = malloc(sizeof(binary_tree_t));
+
+	if (newNode == NULL)
+		return (NULL);
+
+	newNode->n = value;
+	newNode->parent = parent;
+	newNode->left = NULL;
+	newNode->right = NULL;
+
+	return (newNode);
 }
 
 /**
@@ -81,23 +83,23 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
  */
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 {
-    binary_tree_t *newNode;
-    
-    if (parent == NULL)
-        return (NULL);
+	binary_tree_t *newNode;
 
-    newNode = binary_tree_node(parent, value);
-    if (newNode == NULL)
-        return (NULL);
+	if (parent == NULL)
+		return (NULL);
 
-    if (parent->left != NULL)
-    {
-        newNode->left = parent->left;
-        parent->left->parent = newNode;
-    }
-    parent->left = newNode;
+	newNode = binary_tree_node(parent, value);
+	if (newNode == NULL)
+		return (NULL);
 
-    return (newNode);
+	if (parent->left != NULL)
+	{
+		newNode->left = parent->left;
+		parent->left->parent = newNode;
+	}
+	parent->left = newNode;
+
+	return (newNode);
 }
 
 /**
@@ -110,21 +112,21 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
  */
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-    binary_tree_t *newNode;
+	binary_tree_t *newNode;
 
-    if (parent == NULL)
-        return (NULL);
+	if (parent == NULL)
+		return (NULL);
 
-    newNode = binary_tree_node(parent, value);
-    if (newNode == NULL)
-        return (NULL);
+	newNode = binary_tree_node(parent, value);
+	if (newNode == NULL)
+		return (NULL);
 
-    if (parent->right != NULL)
-    {
-        newNode->right = parent->right;
-        parent->right->parent = newNode;
-    }
-    parent->right = newNode;
+	if (parent->right != NULL)
+	{
+		newNode->right = parent->right;
+		parent->right->parent = newNode;
+	}
+	parent->right = newNode;
 
-    return (newNode);
+	return (newNode);
 }
